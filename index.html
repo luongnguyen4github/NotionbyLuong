@@ -1,0 +1,395 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@luongnguyen4github 
+ShoroukAziz
+/
+notion_widgets
+2
+90842
+Code
+Issues
+Pull requests
+40
+Actions
+Projects
+Wiki
+Security
+Insights
+You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork luongnguyen4github/notion_widgets, so you can send a pull request.
+notion_widgets
+/
+index.html
+in
+ShoroukAziz:master
+ 
+
+Spaces
+
+4
+
+No wrap
+1
+<!-- original : https://codepen.io/SeanNorton/pen/LWBXQL -->
+2
+<!DOCTYPE html>
+3
+<html lang="en">
+4
+<head>
+5
+    <meta charset="UTF-8">
+6
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+7
+    <title>Document</title>
+8
+​
+9
+    <style>
+10
+​
+11
+        /*CSS RESETS*/
+12
+​
+13
+body{
+14
+    background-color: #fff;
+15
+    line-height: 1.6;
+16
+​
+17
+}
+18
+​
+19
+h1 {
+20
+    margin-top: 0;
+21
+}
+22
+​
+23
+​
+24
+/*CSS START*/
+25
+​
+26
+.full-table {
+27
+    display: table;
+28
+    height: 100%;
+29
+    width: 100%;
+30
+}
+31
+​
+32
+.table-cell {
+33
+    display: table-cell;
+34
+    vertical-align: middle;
+35
+    text-align: center;
+36
+}
+37
+​
+38
+.card {
+39
+    padding: 10px 25px 10px 25px;
+40
+    border-radius: 10px;
+41
+    background: #fff5ee;
+42
+    color: #fff;
+43
+    display: inline-block;
+44
+    box-shadow: 2px 2px 1px 0px #295C7B;
+45
+}
+46
+​
+47
+.card:hover {
+48
+    margin-top: 2px;
+49
+    box-shadow: none;
+50
+}
+51
+​
+52
+.clock {
+53
+    display: inline-block;
+54
+    font-family: 'Roboto', sans-serif;
+55
+    font-weight: bold;
+56
+    font-size: 1.2em;
+57
+    /* padding-left: 20px; */
+58
+}
+59
+​
+60
+.time {
+61
+    display: inline-block;
+62
+    min-width: 37px;
+63
+}
+64
+​
+65
+.colon {
+66
+    font-size: 1.1em;
+67
+    display: inline-block;
+68
+}
+69
+​
+70
+.date {
+71
+    display: block;
+72
+    min-width: 162px;
+73
+    /* padding-right: 30px; */
+74
+    /* border-right: 2px solid #295C7B; */
+75
+    font-family: 'Roboto', sans-serif;
+76
+    font-size: 1.2em;
+77
+}
+78
+.greet{
+79
+    
+80
+    min-width: 162px;
+81
+    /* padding-right: 30px; */
+82
+    font-family: 'Roboto', sans-serif;
+83
+    font-size: 1.2em;
+84
+}
+85
+​
+86
+    </style>
+87
+</head>
+88
+<body>
+89
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+90
+​
+91
+<div class="full-table">
+92
+  <div class="table-cell">
+93
+    
+94
+    <div class="card">
+95
+        <div class="greet" id="greet"></div>
+96
+      <div class="date" id="date"></div>
+97
+      <div class="clock">
+98
+        <div class="time" id="hour"></div>
+99
+        <div class="colon">:</div>
+100
+        <div class="time" id="min"></div>
+101
+        <div class="colon">:</div>
+102
+        <div class="time" id="sec"></div>
+103
+      </div>
+104
+    </div>
+105
+    
+106
+  </div>
+107
+</div>
+108
+​
+109
+<script>
+110
+    function date() {
+111
+var today = new Date();
+112
+document.getElementById('date').innerHTML = today.toDateString();
+113
+}
+114
+​
+115
+​
+116
+function clock() {
+117
+var today = new Date();
+118
+var hour = zeros(twelveHour(today.getHours()));
+119
+var minutes = zeros(today.getMinutes());
+120
+var seconds = zeros(today.getSeconds());
+121
+if(today.getHours() >=12){
+122
+    seconds+=" pm"
+123
+}
+124
+else{
+125
+    seconds+=" am"
+126
+}
+127
+hrs = today.getHours();
+128
+if (hrs < 12)
+129
+        greet = 'Good Morning, Have A Nice Day ';
+130
+    else if (hrs >= 12 && hrs <= 17)
+131
+        greet = 'Good Afternoon, Focus More ';
+132
+    else if (hrs >= 17 && hrs <= 24)
+133
+        greet = 'Good Evening, Relax ';
+134
+// console.log(today.toLocaleTimeString());
+135
+document.getElementById('greet').innerHTML = greet;
+136
+document.getElementById('hour').innerHTML = hour;
+137
+document.getElementById('min').innerHTML = minutes;
+138
+document.getElementById('sec').innerHTML = seconds;
+139
+}
+140
+​
+141
+function twelveHour(hour) {
+142
+if (hour > 12) {
+143
+    return hour -= 12 
+144
+} else if (hour === 0) {
+145
+    return hour = 12;
+146
+} else {
+147
+    return hour
+148
+}
+149
+}
+150
+// adds zero infront of single digit number
+151
+function zeros(num) {
+152
+if (num < 10) {
+153
+    num = '0' + num
+154
+};
+155
+return num;
+156
+}
+157
+​
+158
+function dateTime() {
+159
+date();
+160
+clock();
+161
+setTimeout(dateTime, 500);
+162
+}
+163
+​
+164
+dateTime()
+165
+// END
+166
+</script>
+167
+​
+168
+</body>
+169
+</html>
+170
+​
+@luongnguyen4github
+Propose changes
+Commit summary
+Create index.html
+Optional extended description
+Add an optional extended description…
+ 
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+1
